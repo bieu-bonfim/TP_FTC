@@ -4,7 +4,7 @@ class Estado:
     self.output = output
     self.transitions = {}
     
-  def printSelf(self):
+  def print_self(self):
     print(f"{self.nome} | {self.output}")
     for t in self.transitions:
       print(f"{t} -> {self.transitions[t]}")
