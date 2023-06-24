@@ -15,6 +15,8 @@ def leitura(file):
           out = 'def'
         elif e[0] == 'C':
           out = 'cur'
+        elif e[0] == 'I':
+          out = ''
         else:
           out = 'rng'
         outputs.append(out)
@@ -26,9 +28,10 @@ def leitura(file):
       partida = half1.strip().split(' ')[0]
       destino = half1.strip().split(' ')[2]
       leituras = half2.strip().split(' ')
-      for l in leituras:
-        transitions.append({
-          l: destino
-        })
+      transitions.append({
+        'partida': partida,
+        'destino': destino,
+        'leituras': leituras,
+      })
 
   return estados, outputs, inicial, transitions

@@ -12,3 +12,9 @@ class Estado:
   def add_transition(self, leitura, destino):
     for l in leitura:
       self.transitions[l] = destino
+      
+  def transition(self, input):
+    if input in self.transitions:
+      return self.transitions[input]
+    else:
+      return False

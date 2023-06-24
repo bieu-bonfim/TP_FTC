@@ -1,4 +1,5 @@
 from Estado import Estado
+from Auxiliar import leitura
 
 class AutomatoMoore:
   
@@ -9,32 +10,12 @@ class AutomatoMoore:
     self.init_moore()
     
   def init_moore(self):
-    with open(self.file, 'r') as file:
-      lines = file.readlines()
-
-    for line in lines:
-      if line.startswith('Q:'): 
-        estado = line.strip().split(' ')[1:] 
-        for e in estado:
-          if e[0] == 'A':
-            out = 'atk'
-          elif e[0] == 'D':
-            out = 'def'
-          elif e[0] == 'C':
-            out = 'cur'
-          else:
-            out = 'rng'
-          self.add_state(nome=e, output=out)
-      elif line.startswith('I:'): 
-        initial = line.strip().split('I: ')[1]
-        self.set_current(nome=initial)
-      else:
-        half1 = line.strip().split('|')[0]
-        half2 = line.strip().split('|')[1]
-        partida = half1.strip().split(' ')[0]
-        destino = half1.strip().split(' ')[2]
-        leituras = half2.strip().split(' ')
-        self.get_state(nome=partida).add_transition(leituras, destino)
+    es, os, inicial, ts = leitura(self.file)
+    for i in range(len(es)):
+      self.add_state(es[i], os[i])
+    self.estado_atual = self.estados[inicial]
+    for t in ts:
+      self.get_state(t['partida']).add_transition(t['leituras'], t['destino'])
   
   def print_self(self):
     print('Estados | Output:')
@@ -53,3 +34,8 @@ class AutomatoMoore:
   def get_state(self, nome):
     return self.estados[nome]
   
+  def execute(self, input):
+    new = self.estado_atual.transition(input)
+    if new:
+      self.set_current(new)
+      print(self.estados[new].output)
