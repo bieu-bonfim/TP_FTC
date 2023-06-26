@@ -1,25 +1,12 @@
 def leitura(file):
   with open(file, 'r') as file:
     lines = file.readlines()
-
-  outputs = []
+    
   transitions = []
 
   for line in lines:
     if line.startswith('Q:'): 
       estados = line.strip().split(' ')[1:]
-      for e in estados:
-        if e[0] == 'A':
-          out = 'atk'
-        elif e[0] == 'D':
-          out = 'def'
-        elif e[0] == 'C':
-          out = 'cur'
-        elif e[0] == 'I':
-          out = ''
-        else:
-          out = 'rng'
-        outputs.append(out)
     elif line.startswith('I:'): 
       inicial = line.strip().split('I: ')[1]
     else:
@@ -34,4 +21,4 @@ def leitura(file):
         'leituras': leituras,
       })
 
-  return estados, outputs, inicial, transitions
+  return estados, inicial, transitions

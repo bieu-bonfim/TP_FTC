@@ -10,9 +10,19 @@ class AutomatoMoore:
     self.init_moore()
     
   def init_moore(self):
-    es, os, inicial, ts = leitura(self.file)
-    for i in range(len(es)):
-      self.add_state(es[i], os[i])
+    es, inicial, ts = leitura(self.file)
+    for e in es:
+      if e[0] == 'A':
+        out = 'atk'
+      elif e[0] == 'D':
+        out = 'def'
+      elif e[0] == 'C':
+        out = 'cur'
+      elif e[0] == 'I':
+        out = ''
+      else:
+        out = 'rng'
+      self.add_state(e, out)
     self.estado_atual = self.estados[inicial]
     for t in ts:
       self.get_state(t['partida']).add_transition(t['leituras'], t['destino'])
@@ -35,7 +45,7 @@ class AutomatoMoore:
     return self.estados[nome]
   
   def execute(self, input):
-    new = self.estado_atual.transition(input)
+    new = self.estado_atual.get_transition(input)
     if new:
       self.set_current(new)
       print(self.estados[new].output)
