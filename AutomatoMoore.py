@@ -1,12 +1,18 @@
 from Estado import Estado
-from Auxiliar import leitura
+from Auxiliar import leitura, roll
 
 class AutomatoMoore:
   
-  def __init__(self, file):
+  def __init__(self, file : str, nome : str):
     self.file = file
+    self.nome = nome
     self.estados = {}
-    self.estado_atual = None
+    self.estado_atual : Estado = None
+    # self.atk_bonus = 0
+    # self.hit_bonus = 0
+    # self.armor_class = 0
+    # self.heal_bonus = 0
+    self.life = 20
     self.init_moore()
     
   def init_moore(self):
@@ -17,7 +23,7 @@ class AutomatoMoore:
       elif e[0] == 'D':
         out = 'def'
       elif e[0] == 'C':
-        out = 'cur'
+        out = 'heal'
       elif e[0] == 'I':
         out = ''
       else:
@@ -44,8 +50,24 @@ class AutomatoMoore:
   def get_state(self, nome):
     return self.estados[nome]
   
-  def execute(self, input):
-    new = self.estado_atual.get_transition(input)
+  def execute(self, inpt):
+    new = self.estado_atual.get_transition(inpt)
     if new:
       self.set_current(new)
-      print(self.estados[new].output)
+      act = self.estado_atual.output
+      num = 0
+      if act == 'rng':
+        act = roll(3)
+        act = 'atk' if act == 1 else 'def' if act == 2 else 'cur'
+      if act == 'atk':
+        num = roll(8)
+        print(f'A {self.nome} desfere um golpe de {num} de dano!')
+      elif act == 'def':
+        num = roll(6)
+        print(f'A {self.nome} se defende, mitigando um total de {num} de dano!')
+      elif act == 'cur':
+        num = roll(4)
+        print(f'A {self.nome} conjura um ritual de cura, recuperando {num} de vida!')
+      return act, num
+    else:
+      print('Entrada não reconhecida')

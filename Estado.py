@@ -13,8 +13,8 @@ class Estado:
     for l in leitura:
       self.transitions[l] = destino
       
-  def get_transition(self, input):
-    if input in self.transitions:
-      return self.transitions[input]
+  def get_transition(self, inpt):
+    if inpt in self.transitions:
+      return self.transitions[inpt]
     else:
       return False

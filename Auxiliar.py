@@ -1,4 +1,6 @@
-def leitura(file):
+from random import randint
+
+def leitura(file : str):
   with open(file, 'r') as file:
     lines = file.readlines()
     
@@ -22,3 +24,6 @@ def leitura(file):
       })
 
   return estados, inicial, transitions
+
+def roll(max : int):
+  return randint(1, max+1)
