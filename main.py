@@ -17,6 +17,7 @@ while maqs[0].life > 0 and maqs[1].life >0:
   
   act1, num1 = maqs[(turno-1)%2].execute(in1)
   act2, num2 = maqs[(turno)%2].execute(in1)
+  
   if act1 == 'atk':
     if act2 == 'def':
       maqs[(turno)%2].life -= (num1 - num2) if (num1 - num2) > 0 else 0

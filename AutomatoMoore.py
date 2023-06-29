@@ -23,7 +23,7 @@ class AutomatoMoore:
       elif e[0] == 'D':
         out = 'def'
       elif e[0] == 'C':
-        out = 'heal'
+        out = 'cur'
       elif e[0] == 'I':
         out = ''
       else:
@@ -57,8 +57,8 @@ class AutomatoMoore:
       act = self.estado_atual.output
       num = 0
       if act == 'rng':
-        act = roll(3)
-        act = 'atk' if act == 1 else 'def' if act == 2 else 'cur'
+        act = roll(6)
+        act = 'def' if act == 1 else 'cur' if act == 2 else 'atk'
       if act == 'atk':
         num = roll(8)
         print(f'A {self.nome} desfere um golpe de {num} de dano!')
