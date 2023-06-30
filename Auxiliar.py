@@ -1,9 +1,5 @@
 from random import randint
-
-red = "\033[31m"
-rc = "\033[0m"
-cyan = "\033[36m"
-
+import os
 
 def leitura(file : str):
   with open(file, 'r') as file:
@@ -32,3 +28,11 @@ def leitura(file : str):
 
 def roll(max : int):
   return randint(1, max)
+
+def clear_console():
+  # Clear console for Windows
+  if os.name == 'nt':
+    _ = os.system('cls')
+  # Clear console for UNIX/Linux/MacOS
+  else:
+    _ = os.system('clear')

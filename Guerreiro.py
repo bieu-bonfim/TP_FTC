@@ -3,7 +3,7 @@ from Auxiliar import leitura, roll
 from colorama import init, Fore, Back, Style
 init()
 
-class AutomatoMoore:
+class Guerreiro:
   
   def __init__(self, file : str, nome_reino : str, nome):
     self.file = file
@@ -11,14 +11,14 @@ class AutomatoMoore:
     self.nome = nome
     self.estados = {}
     self.estado_atual : Estado = None
-    # self.atk_bonus = 0
-    # self.hit_bonus = 0
-    # self.armor_class = 0
-    # self.heal_bonus = 0
+    self.atk_bonus = 0
+    self.hit_bonus = 0
+    self.armor_class = 10
+    self.heal_bonus = 0
     self.life = 20
-    self.init_moore()
+    self.init_guerreiro()
     
-  def init_moore(self):
+  def init_guerreiro(self):
     es, inicial, ts = leitura(self.file)
     for e in es:
       if e[0] == 'A':
@@ -66,11 +66,11 @@ class AutomatoMoore:
         act = roll(6)
         act = 'def' if act == 1 else 'cur' if act == 2 else 'atk'
       if act == 'atk':
-        num = roll(8)
+        num = roll(8)+self.atk_bonus
       elif act == 'def':
-        num = roll(6)
-      elif act == 'cur':
         num = roll(4)
+      elif act == 'cur':
+        num = roll(6)+self.heal_bonus
     except:
       print('Ação não inscrita nos pergaminhos, turno omitido')
       act = 'err'
