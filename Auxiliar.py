@@ -1,5 +1,10 @@
 from random import randint
 
+red = "\033[31m"
+rc = "\033[0m"
+cyan = "\033[36m"
+
+
 def leitura(file : str):
   with open(file, 'r') as file:
     lines = file.readlines()
@@ -26,4 +31,4 @@ def leitura(file : str):
   return estados, inicial, transitions
 
 def roll(max : int):
-  return randint(1, max+1)
+  return randint(1, max)

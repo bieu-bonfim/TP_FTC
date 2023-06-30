@@ -1,10 +1,13 @@
 from Estado import Estado
 from Auxiliar import leitura, roll
+from colorama import init, Fore, Back, Style
+init()
 
 class AutomatoMoore:
   
-  def __init__(self, file : str, nome : str):
+  def __init__(self, file : str, nome_reino : str, nome):
     self.file = file
+    self.nome_reino = nome_reino
     self.nome = nome
     self.estados = {}
     self.estado_atual : Estado = None
@@ -40,6 +43,9 @@ class AutomatoMoore:
     print('Atual:')
     self.estado_atual.print_self()
     
+  def print_life(self):
+    print(f'Pontos de vida de {Fore.CYAN}{self.nome}: {Fore.RED}{self.life}{Style.RESET_ALL}')
+    
   def add_state(self, nome, output):
     state = Estado(nome, output)
     self.estados[nome] = state
@@ -51,8 +57,8 @@ class AutomatoMoore:
     return self.estados[nome]
   
   def execute(self, inpt):
-    new = self.estado_atual.get_transition(inpt)
-    if new:
+    try:
+      new = self.estado_atual.get_transition(inpt)
       self.set_current(new)
       act = self.estado_atual.output
       num = 0
@@ -61,13 +67,12 @@ class AutomatoMoore:
         act = 'def' if act == 1 else 'cur' if act == 2 else 'atk'
       if act == 'atk':
         num = roll(8)
-        print(f'A {self.nome} desfere um golpe de {num} de dano!')
       elif act == 'def':
         num = roll(6)
-        print(f'A {self.nome} se defende, mitigando um total de {num} de dano!')
       elif act == 'cur':
         num = roll(4)
-        print(f'A {self.nome} conjura um ritual de cura, recuperando {num} de vida!')
-      return act, num
-    else:
-      print('Entrada não reconhecida')
+    except:
+      print('Ação não inscrita nos pergaminhos, turno omitido')
+      act = 'err'
+      num = 0
+    return act, num
