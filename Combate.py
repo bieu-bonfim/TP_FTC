@@ -4,19 +4,17 @@ init()
 
 class Combate:
   
-  def __init__(self, maqs, tipo):
+  def __init__(self, maqs):
     self.turno = 0
     self.maqs = maqs
     self.maq1 = None
     self.maq2 = None
-    self.tipo = tipo
     
   def start_combat(self):
     while self.maqs[0].life > 0 and self.maqs[1].life >0:
       self.maq1 = self.maqs[(self.turno-1)%2]
       self.maq2 = self.maqs[(self.turno)%2]
       inp = self.start_turn()
-      clear_console()
       
       act1, num1 = self.maq1.execute(inp)
       act2, num2 = self.maq2.execute(inp)
@@ -26,15 +24,17 @@ class Combate:
       self.maq1.print_life()
       self.maq2.print_life()
       
-      self.maqs[(self.turno-1)%2] = self.maq1
-      self.maqs[(self.turno)%2] = self.maq2
+      self.maqs[(self.turno-1)%2] = self.maq2
+      self.maqs[(self.turno)%2] = self.maq1
       
     if self.maq1.life <= 0 and self.maq2.life <= 0:
-      print('empatou kkkk')
+      print('\nOs dois guerreiros caíram!!!!')
     elif self.maq1.life <= 0:
-      print(f"{self.maq1.nome} morreu")
+      print(f"\n{Fore.RED}{self.maq1.nome} sucumbiu!{Style.RESET_ALL}")
+      print(f"{Fore.GREEN}Vitória de {self.maq2.nome_reino}!{Style.RESET_ALL}")
     else:
-      print(f"{self.maq2.nome} morreu")
+      print(f"\n{Fore.RED}{self.maq2.nome} scumbiu{Style.RESET_ALL}!")
+      print(f"{Fore.GREEN}Vitória de {self.maq1.nome_reino}{Style.RESET_ALL}!")
     
   def start_turn(self):
     self.turno += 1

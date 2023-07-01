@@ -5,17 +5,17 @@ init()
 
 class Guerreiro:
   
-  def __init__(self, file : str, nome_reino : str, nome):
+  def __init__(self, file : str, nome_reino : str, nome, dext, stre, wisd):
     self.file = file
     self.nome_reino = nome_reino
     self.nome = nome
     self.estados = {}
     self.estado_atual : Estado = None
-    self.atk_bonus = 0
-    self.hit_bonus = 0
-    self.armor_class = 10
-    self.heal_bonus = 0
-    self.life = 20
+    self.atk_bonus = stre
+    self.hit_bonus = dext
+    self.armor_class = 10 + dext
+    self.heal_bonus = (wisd*2)
+    self.life = 20 + stre
     self.init_guerreiro()
     
   def init_guerreiro(self):
