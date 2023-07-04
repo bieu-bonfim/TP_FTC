@@ -2,6 +2,7 @@ from Mina import *
 from time import sleep as s
 from colorama import init, Fore, Back, Style
 import sys
+import os
 init()
 
 class Anao:
@@ -30,9 +31,10 @@ class Anao:
                 count += 1
                 while True:
                     if self.mapa.mina[count] == 0:
-                        print(f'{self.nome} quebra uma pedra', end="", flush=True)
+                        print(f'{self.nome} minerando', end="", flush=True)
                         s(1)
                         print('\r\033[2K', end="", flush=True)
+                        s(0.5)
                         count += 1
                         continue
                     elif self.mapa.mina[count] == '&':
@@ -41,19 +43,32 @@ class Anao:
                         break
                     else:
                         self.bolsa.append(self.mapa.mina[count])
-                        print(f'{self.nome} encontra algo precioso e guarda em sua bolsa!')
+                        os.system('clear || cls')
+                        print(f'Bioma: {self.mapa.bioma_atual}')
+                        self.printBolsa()
+                        print(f'{self.nome} encontra algo valioso!', end="", flush=True)
+                        s(1)
+                        print('\r\033[2K', end="", flush=True)
                         s(1)
                         count += 1
             if self.mapa.mina[count] == '&':
                 self.estado = 'avançando'
+                os.system('clear || cls')
                 self.anaoStatus()
                 self.printBolsa()
-                s(2)
+                s(4)
                 count += 1
+                bioma = random.randint(0, 4)
+                self.mapa.bioma_atual = self.mapa.biomas[bioma]
+                os.system('clear || cls')
+                print(f'Bioma: {self.mapa.bioma_atual}')
+                self.printBolsa()
                 while True:
                     if self.mapa.mina[count] == 0:
-                        print(f'{self.nome} quebra uma pedra')
+                        print(f'{self.nome} minerando', end="", flush=True)
                         s(1)
+                        print('\r\033[2K', end="", flush=True)
+                        s(0.5)
                         count += 1
                         continue
                     elif self.mapa.mina[count] == '&':
@@ -62,7 +77,12 @@ class Anao:
                         break
                     else:
                         self.bolsa.append(self.mapa.mina[count])
-                        print(f'{self.nome} encontra algo precioso e guarda em sua bolsa!')
+                        os.system('clear || cls')
+                        print(f'Bioma: {self.mapa.bioma_atual}')
+                        self.printBolsa()
+                        print(f'{self.nome} encontra algo valioso!', end="", flush=True)
+                        s(1)
+                        print('\r\033[2K', end="", flush=True)
                         s(1)
                         count += 1
 

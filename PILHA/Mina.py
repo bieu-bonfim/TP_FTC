@@ -1,10 +1,14 @@
 import random
+from colorama import init, Fore, Back, Style
+init()
 class Mina:
     
     def __init__(self, nome, salas):
         self.nome = nome
         self.mina = []
         self.salas = salas
+        self.bioma_atual = 'Corredores de entrada'
+        self.biomas = [f'Caverna com poços de {Fore.GREEN}ácido{Fore.RESET}', f'Caverna {Fore.MAGENTA}Fúngica{Fore.RESET}', f'Caverna com {Fore.RED}lava{Fore.RESET}', f'Caverna de {Fore.CYAN}cristais{Fore.RESET}', f'{Fore.BLUE}Rio{Fore.RESET} subterrâneo']
         
     def criaMina(self):
         self.mina.append('>')
