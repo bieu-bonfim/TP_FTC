@@ -1,7 +1,7 @@
-from Guerreiro import Guerreiro
-from Combate import Combate
+from Moore.Guerreiro import Guerreiro
+from Moore.Combate import Combate
 
-from Menu import creation
+from Moore.Menu import creation
 
 maq1 = creation()
 maq2 = creation()

@@ -1,4 +1,4 @@
-from Estado import Estado
+from Moore.Estado import Estado
 from Auxiliar import leitura, roll
 from colorama import init, Fore, Back, Style
 init()

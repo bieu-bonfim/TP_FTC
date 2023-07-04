@@ -1,5 +1,5 @@
 from colorama import init, Fore, Back, Style
-from Guerreiro import Guerreiro
+from Moore.Guerreiro import Guerreiro
 init()
 
 def creation():
