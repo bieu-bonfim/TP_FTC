@@ -30,8 +30,9 @@ class Anao:
                 count += 1
                 while True:
                     if self.mapa.mina[count] == 0:
-                        print(f'{self.nome} quebra uma pedra')
+                        print(f'{self.nome} quebra uma pedra', end="", flush=True)
                         s(1)
+                        print('\r\033[2K', end="", flush=True)
                         count += 1
                         continue
                     elif self.mapa.mina[count] == '&':
