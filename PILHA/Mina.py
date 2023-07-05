@@ -72,9 +72,11 @@ class Mina:
                     self.mina.append(array[k])
                 self.mina.append('&')
         self.mina.append('<')
+        
+    def mostraMapa(self):
         for i in range(len(self.mina)):
-            print(self.mina[i], end='')
-        print()
+            print(f'{Fore.MAGENTA}{self.mina[i]}', end='')
+        print(f'{Fore.RESET}')
                     
 def criaSala(num_ones, minerio):
     array = [0] * 10
@@ -84,4 +86,5 @@ def criaSala(num_ones, minerio):
         array[pos] = minerio
 
     return array
+
                 
