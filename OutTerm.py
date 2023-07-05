@@ -65,7 +65,7 @@ def print_slow(text, endc):
 
         print(text[i], end="")
         if text[i] != " ":
-            time.sleep(0.02)
+            time.sleep(0.005)
     print(end=endc)
     os.system("tput cvvis") # Cursor do terminal visível
 

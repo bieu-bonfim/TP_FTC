@@ -35,6 +35,7 @@ class Combate:
     else:
       print(f"\n{Fore.RED}{self.maq2.nome} scumbiu{Style.RESET_ALL}!")
       print(f"{Fore.GREEN}Vitória de {self.maq1.nome_reino}{Style.RESET_ALL}!")
+    input('Aperte qualquer tecla para continuar...')
     
   def start_turn(self):
     self.turno += 1

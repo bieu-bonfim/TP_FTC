@@ -104,6 +104,7 @@ class Crafting:
     print(f"Parabéns! O anão conseguiu fazer {cor_raridade}{arma}{Style.RESET_ALL}!!!")
     s(3)
     print(f"O valor de seu item é de {Fore.YELLOW}{total}{Fore.RESET} moedas, feito com o mais puro {cor_raridade}{self.raridades[self.fita[-1]]}{Style.RESET_ALL}")
+    input('Pressione qualquer tecla para continuar...')
     
   def print_self(self):
     print('Estados')

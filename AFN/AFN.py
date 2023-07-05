@@ -160,9 +160,11 @@ class AFN:
                 inimigo = int(input(f'Vocês podem acabar com isso sem mais {Fore.RED}sangue{Fore.RESET}... \n0 - {Fore.GREEN}Acabar luta{Fore.RESET}\n1 - {Fore.RED}Atacar!{Fore.RESET}\n'))
                 if inimigo == 0:
                     print(f'{Fore.CYAN}{samurai1.nome}{Fore.RESET}... {Fore.CYAN}{samurai2.nome}{Fore.RESET}... {Fore.MAGENTA}Vocês não tem inimigos{Fore.RESET}!')
+                    input('Pressione qualquer tecla para continuar...')
                     break
                 else:
                     print(f'{Fore.RED}Que assim seja...{Fore.RESET}')
+                    input('Pressione qualquer tecla para continuar...')
                     continue
 
 
