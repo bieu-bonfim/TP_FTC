@@ -164,7 +164,6 @@ class AFN:
                     break
                 else:
                     print(f'{Fore.RED}Que assim seja...{Fore.RESET}')
-                    input('Pressione qualquer tecla para continuar...')
                     continue
 
 
