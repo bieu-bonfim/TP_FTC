@@ -47,10 +47,13 @@ def game():
     match afd.get_result(domain1, domain2):
         case "Domain 1":
             print_slow(f"\n\x1b[1mO Domínio 1... \x1b[32mfoi o Vencedor\x1b[0m!!!", "\n")
+            input('Aperte qualquer tecla para continuar...')
             return True
         case "Draw":
             print_slow(f"\n\x1b[1mDeu empate... Vamos ter que realizar outra MD3!\x1b[0m", "\n")
+            input('Aperte qualquer tecla para continuar...')
             return False
         case "Domain 2":
             print_slow(f"\n\x1b[1mO Domínio 2... \x1b[32mfoi o Vencedor\x1b[0m!!!", "\n")
+            input('Aperte qualquer tecla para continuar...')
             return True
