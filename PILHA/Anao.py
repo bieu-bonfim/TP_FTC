@@ -1,6 +1,6 @@
-from Mina import *
+from PILHA.Mina import *
 from time import sleep as s
-from Crafting import *
+from PILHA.Crafting import *
 from colorama import init, Fore, Back, Style
 import sys
 import os

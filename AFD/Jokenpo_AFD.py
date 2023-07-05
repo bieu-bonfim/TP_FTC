@@ -1,4 +1,4 @@
-from State import *
+from AFD.State import *
 
 
 class Jokenpo_AFD:

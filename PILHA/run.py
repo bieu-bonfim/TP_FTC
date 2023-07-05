@@ -1,8 +1,9 @@
-from Mina import *
-from Anao import *
-from Crafting import *
+from PILHA.Mina import *
+from PILHA.Anao import *
+from PILHA.Crafting import *
 
-mina = Mina('Moria', '9')
-mina.criaMina()
-anao = Anao('Ballin', mina)
-anao.explorar()
+def run_pilha():
+    mina = Mina('Moria', '9')
+    mina.criaMina()
+    anao = Anao('Ballin', mina)
+    anao.explorar()

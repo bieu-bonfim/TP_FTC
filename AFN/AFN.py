@@ -1,3 +1,9 @@
+import sys
+# caution: path[0] is reserved for script path (or '' in REPL)
+sys.path.append('../')
+
+from OutTerm import *
+
 from AFN.EstadoAFN import *
 from colorama import init, Fore, Back, Style
 from random import randint

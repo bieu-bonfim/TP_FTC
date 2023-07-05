@@ -1,16 +1,24 @@
-from Jokenpo_AFD import *
+import sys
+# caution: path[0] is reserved for script path (or '' in REPL)
+sys.path.append('../')
+
+from AFD.Jokenpo_AFD import *
+from OutTerm import *
 from colorama import init, Fore, Back, Style
 
 init()
 
-
 def menu():
-    print(f"Seja bem vindo ao combate que definirá o destino dos domínios.")
-    print(
-        f"Após a grande batalha, após tantas perdas, os domínios concordaram em fazer uma MD3 de Jokenpô!"
+    clear_terminal(0)
+    print_slow(f"\x1b[91m\x1b[1m Seja bem vindo ao combate\
+ que definirá o destino dos Domínios! \x1b[0m".center(180, "-"), "\n")
+    print_slow(
+        f"\x1b[1mApós a grande batalha, após tantas perdas, os\
+ domínios concordaram em fazer uma MD3 de Jokenpô!\x1b[0m".center(175), "\n"
     )
-    print(
-        f"Desta forma os dois reinos devem informar suas três jogadas, e após isso será informado o domínio vencedor."
+    print_slow(
+        f"\x1b[1mDesta forma os dois reinos devem informar suas três jogadas\
+e após isso será informado o domínio vencedor.\x1b[0m". center(175), "\n"
     )
     while True:
         result = game()
@@ -21,30 +29,28 @@ def menu():
 def game():
     afd = Jokenpo_AFD()
 
-    print(f"Domínio 1, escreva suas 3 jogadas separadas por espaço:")
-    print(f"{Fore.RED}Papel: 0{Style.RESET_ALL}")
-    print(f"{Fore.GREEN}Pedra: 1{Style.RESET_ALL}")
-    print(f"{Fore.BLUE}Tesoura: 2{Style.RESET_ALL}")
-    print(f"{Fore.CYAN}->{Style.RESET_ALL}", end=" ")
-    domain1 = list(map(int, input().split()))
+    print("*".center(167, "-"))
+    print_slow(f"\x1b[1mDomínio 1, escreva suas 3 jogadas separadas por espaço:", "\n")
+    print_slow(f"\x1b[31mPapel: 0", "\n")
+    print_slow(f"\x1b[32mPedra: 1", "\n")
+    print_slow(f"\x1b[34mTesoura: 2", "\n")
+    print_slow(f"\x1b[36m->\x1b[0m", " ")
+    domain1 = list(map(int, input_p("").split()))
 
-    print(f"Domínio 2, escreva suas 3 jogadas separadas por espaço:")
-    print(f"{Fore.RED}Papel: 0{Style.RESET_ALL}")
-    print(f"{Fore.GREEN}Pedra: 1{Style.RESET_ALL}")
-    print(f"{Fore.BLUE}Tesoura: 2{Style.RESET_ALL}")
-    print(f"{Fore.CYAN}->{Style.RESET_ALL}", end=" ")
-    domain2 = list(map(int, input().split()))
+    print_slow(f"\x1b[1mDomínio 2, escreva suas 3 jogadas separadas por espaço:", "\n")
+    print_slow(f"\x1b[31mPapel: 0", "\n")
+    print_slow(f"\x1b[32mPedra: 1", "\n")
+    print_slow(f"\x1b[34mTesoura: 2", "\n")
+    print_slow(f"\x1b[36m->\x1b[0m", " ")
+    domain2 = list(map(int, input_p("").split()))
 
     match afd.get_result(domain1, domain2):
         case "Domain 1":
-            print(f"\nO Domínio 1... {Fore.GREEN}foi o Vencedor{Style.RESET_ALL}!!!\n")
+            print_slow(f"\n\x1b[1mO Domínio 1... \x1b[32mfoi o Vencedor\x1b[0m!!!", "\n")
             return True
         case "Draw":
-            print(f"\nDeu empate... Vamos ter que realizar outra MD3!\n")
+            print_slow(f"\n\x1b[1mDeu empate... Vamos ter que realizar outra MD3!\x1b[0m", "\n")
             return False
         case "Domain 2":
-            print(f"\nO Domínio 2... {Fore.GREEN}foi o Vencedor{Style.RESET_ALL}!!!\n")
+            print_slow(f"\n\x1b[1mO Domínio 2... \x1b[32mfoi o Vencedor\x1b[0m!!!", "\n")
             return True
-
-
-menu()
