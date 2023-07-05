@@ -29,7 +29,7 @@ com separação de espaços na ordem DEX STR WIS:\x1b[0m', "\n")
   print()
   os.system("clear")
   points = points.strip().split()
-  maq = Guerreiro(file, reino, guerr, int(points[0]), int(points[1]), int(points[2]))
+  maq = Guerreiro(file+'.txt', reino, guerr, int(points[0]), int(points[1]), int(points[2]))
   
   return maq
 

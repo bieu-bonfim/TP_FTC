@@ -14,11 +14,11 @@ while True:
 
   print_slow("\x1b[1m\x1b[33m Bem vindo ao programa de simulações de autômatos! \x1b[0m".center(180, "-"), "\n\n")
   print_slow("\x1b[1mSelecione o autômato que deseja simular:\x1b[0m", "\n\n")
-  print_slow("\x1b[1m\x1b[36mMáquina de Moore (Guerreiros) -> 1\x1b[0m", "\n")
-  print_slow("\x1b[1m\x1b[33mAFD (Jokenpo) ".ljust(39, "-") + "-> 2\x1b[0m", "\n")
-  print_slow("\x1b[1m\x1b[32mAFN (Samurai) ".ljust(39, "-") + "-> 3\x1b[0m", "\n")
-  print_slow("\x1b[1m\x1b[34mAutômato de pilha (Anão) ".ljust(39, "-") + "-> 4\x1b[0m", "\n")
-  print_slow("\x1b[1m\x1b[31mSair do programa! ".ljust(39, "-") + "-> 0\x1b[0m", "\n")
+  print_slow("\x1b[1m\x1b[36mMáquina de Moore (Combate em Vermécia) -> 1\x1b[0m", "\n")
+  print_slow("\x1b[1m\x1b[33mAFD (Jo Ken Po dos princípes) ".ljust(48, "-") + "-> 2\x1b[0m", "\n")
+  print_slow("\x1b[1m\x1b[32mAFN (Honra dos Samurais) ".ljust(48, "-") + "-> 3\x1b[0m", "\n")
+  print_slow("\x1b[1m\x1b[34mAPD/MT (Rock n' Stone) ".ljust(48, "-") + "-> 4\x1b[0m", "\n")
+  print_slow("\x1b[1m\x1b[31mSair do programa! ".ljust(48, "-") + "-> 0\x1b[0m", "\n")
   escolha = -1
   while escolha not in range(5):
       escolha = int(input_p("\x1b[1m>> \x1b[0m"))

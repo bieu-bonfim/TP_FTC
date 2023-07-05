@@ -121,7 +121,7 @@ class Combate:
         self.maq1.life -= num2
         print(f'O ataque acerta o campeão de {self.maq1.nome_reino}, causando {Fore.RED}{num2}{Style.RESET_ALL} de dano!')
     elif act2 == 'cur':
-      self.maq2.life += num1
-      print(f'{ self.maq2.nome} recebe uma benção divina, recuperando {Fore.GREEN}{num1}{Style.RESET_ALL} pontos de vida!')
+      self.maq2.life += num2
+      print(f'{ self.maq2.nome} recebe uma benção divina, recuperando {Fore.GREEN}{num2}{Style.RESET_ALL} pontos de vida!')
     elif act2 == 'def':
       print(f'{ self.maq2.nome} preparou sua {Fore.BLUE}defesa{Style.RESET_ALL}!')
