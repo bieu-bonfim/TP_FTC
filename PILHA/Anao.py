@@ -15,6 +15,7 @@ class Anao:
         self.moedas = 0
         
     def explorar(self):
+        minerios = ['Ferro', 'Prata', 'Ouro', 'Platina', 'Esmeralda', 'Safira', 'Rubi', 'Diamante', 'Mithril']
         count = 0
         self.estado = 'inicio'
         self.anaoStatus()
@@ -27,7 +28,6 @@ class Anao:
                 break
             if self.mapa.mina[count] == '>':
                 self.estado = 'minerando'
-                self.anaoStatus()
                 count += 1
                 while True:
                     if self.mapa.mina[count] == 0:
@@ -42,11 +42,15 @@ class Anao:
                     elif self.mapa.mina[count] == '<':
                         break
                     else:
+                        minerio_atual = self.mapa.mina[count]
+                        minerio_atual = minerios[minerio_atual-1]
                         self.bolsa.append(self.mapa.mina[count])
                         os.system('clear || cls')
-                        print(f'Bioma: {self.mapa.bioma_atual}')
+                        print(f'Bioma: {self.mapa.bioma_atual} rico em {Fore.GREEN}{minerio_atual}{Fore.RESET}')
                         self.printBolsa()
-                        print(f'{self.nome} encontra algo valioso!', end="", flush=True)
+                        minerio_atual = self.mapa.mina[count]
+                        minerio_atual = minerios[minerio_atual-1]
+                        print(f'{self.nome} encontra {Fore.GREEN}{minerio_atual}{Fore.RESET}!', end="", flush=True)
                         s(1)
                         print('\r\033[2K', end="", flush=True)
                         s(1)
@@ -55,7 +59,6 @@ class Anao:
                 self.estado = 'avançando'
                 os.system('clear || cls')
                 self.anaoStatus()
-                self.printBolsa()
                 s(4)
                 count += 1
                 bioma = random.randint(0, 4)
@@ -76,11 +79,13 @@ class Anao:
                     elif self.mapa.mina[count] == '<':
                         break
                     else:
+                        minerio_atual = self.mapa.mina[count]
+                        minerio_atual = minerios[minerio_atual-1]
                         self.bolsa.append(self.mapa.mina[count])
                         os.system('clear || cls')
-                        print(f'Bioma: {self.mapa.bioma_atual}')
+                        print(f'Bioma: {self.mapa.bioma_atual} rico em {Fore.GREEN}{minerio_atual}{Fore.RESET}')
                         self.printBolsa()
-                        print(f'{self.nome} encontra algo valioso!', end="", flush=True)
+                        print(f'{self.nome} encontra {Fore.GREEN}{minerio_atual}{Fore.RESET}!', end="", flush=True)
                         s(1)
                         print('\r\033[2K', end="", flush=True)
                         s(1)
@@ -130,9 +135,7 @@ class Anao:
     def anaoStatus(self):
         if self.estado == 'inicio':
             print(f'{self.nome} começa sua jornada pela mina de {self.mapa.nome}!')
-        if self.estado == 'minerando':
-            print(f'{self.nome} começa a minerar um veio de ')
         if self.estado == 'avançando':
-            print('O anão avança')
+            print(f'{self.nome} avança pela mina de {self.mapa.nome}')
         if self.estado == 'saindo':
             print('O anão sai da mina')
