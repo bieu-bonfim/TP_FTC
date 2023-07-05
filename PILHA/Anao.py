@@ -15,23 +15,43 @@ class Anao:
         self.moedas = 0
         
     def explorar(self):
+        os.system('clear || cls')
+        print('-------------------------------------------')
+        print(f'Mapa da mina: ', end='')
+        self.mapa.mostraMapa()
+        print('-------------------------------------------')
+        s(2)
+        os.system('clear || cls')
         minerios = ['Ferro', 'Prata', 'Ouro', 'Platina', 'Esmeralda', 'Safira', 'Rubi', 'Diamante', 'Mithril']
         count = 0
         self.estado = 'inicio'
         self.anaoStatus()
-        self.estado
+        s(2)
         while True:
             if self.mapa.mina[count] == '<':
+                os.system('clear || cls')
                 self.estado = 'saindo'
                 self.anaoStatus()
-                s(2)
+                print(f'{Back.RED}       ', end="", flush=True)
+                s(0.7)
+                print(f'{Back.RED}       ', end="", flush=True)
+                s(0.7)
+                print(f'{Back.RED}       ', end="", flush=True)
+                s(0.7)
+                print(f'{Back.RED}       ', end="", flush=True)
+                s(0.7)
+                print(f'{Back.RED}       {Back.RESET}', end="", flush=True)
+                s(0.7)                
+                print()
+                os.system('clear || cls')
+                print(f'{Fore.RED}Hora de Desempilhar!{Fore.RESET}')
                 break
             if self.mapa.mina[count] == '>':
                 self.estado = 'minerando'
                 count += 1
                 while True:
                     if self.mapa.mina[count] == 0:
-                        print(f'{self.nome} minerando', end="", flush=True)
+                        print(f'{Fore.RED}{self.nome}{Fore.RESET} minerando', end="", flush=True)
                         s(1)
                         print('\r\033[2K', end="", flush=True)
                         s(0.5)
@@ -47,19 +67,30 @@ class Anao:
                         self.bolsa.append(self.mapa.mina[count])
                         os.system('clear || cls')
                         print(f'Bioma: {self.mapa.bioma_atual} rico em {Fore.GREEN}{minerio_atual}{Fore.RESET}')
+                        print('----------------------------------------------------------------------------------------------------------------------------')
                         self.printBolsa()
+                        print('----------------------------------------------------------------------------------------------------------------------------')
                         minerio_atual = self.mapa.mina[count]
                         minerio_atual = minerios[minerio_atual-1]
-                        print(f'{self.nome} encontra {Fore.GREEN}{minerio_atual}{Fore.RESET}!', end="", flush=True)
+                        print(f'{Fore.RED}{self.nome}{Fore.RESET} encontra {Fore.GREEN}{minerio_atual}{Fore.RESET}!', end="", flush=True)
                         s(1)
                         print('\r\033[2K', end="", flush=True)
                         s(1)
                         count += 1
-            if self.mapa.mina[count] == '&':
+            if self.mapa.mina[count] == '&' and self.mapa.mina[count+1] != '<':
                 self.estado = 'avançando'
                 os.system('clear || cls')
                 self.anaoStatus()
-                s(4)
+                print(f'{Back.GREEN}      ', end="", flush=True)
+                s(0.7)
+                print(f'{Back.GREEN}      ', end="", flush=True)
+                s(0.7)
+                print(f'{Back.GREEN}      ', end="", flush=True)
+                s(0.7)
+                print(f'{Back.GREEN}      ', end="", flush=True)
+                s(0.7)
+                print(f'{Back.GREEN}      {Back.RESET}', end="", flush=True)
+                s(0.7)
                 count += 1
                 bioma = random.randint(0, 4)
                 self.mapa.bioma_atual = self.mapa.biomas[bioma]
@@ -68,7 +99,7 @@ class Anao:
                 self.printBolsa()
                 while True:
                     if self.mapa.mina[count] == 0:
-                        print(f'{self.nome} minerando', end="", flush=True)
+                        print(f'{Fore.RED}{self.nome}{Fore.RESET} minerando', end="", flush=True)
                         s(1)
                         print('\r\033[2K', end="", flush=True)
                         s(0.5)
@@ -84,20 +115,24 @@ class Anao:
                         self.bolsa.append(self.mapa.mina[count])
                         os.system('clear || cls')
                         print(f'Bioma: {self.mapa.bioma_atual} rico em {Fore.GREEN}{minerio_atual}{Fore.RESET}')
+                        print('----------------------------------------------------------------------------------------------------------------------------')
                         self.printBolsa()
-                        print(f'{self.nome} encontra {Fore.GREEN}{minerio_atual}{Fore.RESET}!', end="", flush=True)
+                        print('----------------------------------------------------------------------------------------------------------------------------')
+                        print(f'{Fore.RED}{self.nome}{Fore.RESET} encontra {Fore.GREEN}{minerio_atual}{Fore.RESET}!', end="", flush=True)
                         s(1)
                         print('\r\033[2K', end="", flush=True)
                         s(1)
                         count += 1
+            else:
+                count+=1
 
         vender = inverted_array = self.bolsa[::-1]
         minerios = ['Ferro', 'Prata', 'Ouro', 'Platina', 'Esmeralda', 'Safira', 'Rubi', 'Diamante', 'Mithril']
         valores = ['1', '2', '5', '10', '12', '13', '14', '20', '50']
         for i in range(len(vender)):
-            print(f'O {self.nome} vende o {minerios[vender[i]-1]} e ganha {valores[vender[i]-1]} moedas!')
+            print(f'{Fore.RED}{self.nome}{Fore.RESET} vende {minerios[vender[i]-1]} e ganha {Fore.YELLOW}{valores[vender[i]-1]}{Fore.RESET} moedas!')
             self.moedas += int(valores[vender[i]-1])
-        print(self.moedas)
+        print(f'Moedas de {Fore.YELLOW}ouro{Fore.RESET} totais: {Fore.YELLOW}{self.moedas}{Fore.RESET}')
                 
     def printBolsa(self):
         ferro = 0
@@ -134,8 +169,8 @@ class Anao:
             
     def anaoStatus(self):
         if self.estado == 'inicio':
-            print(f'{self.nome} começa sua jornada pela mina de {self.mapa.nome}!')
+            print(f'{Fore.RED}{self.nome}{Fore.RESET} começa sua jornada pela mina de {Fore.MAGENTA}{self.mapa.nome}!{Fore.RESET}')
         if self.estado == 'avançando':
             print(f'{self.nome} avança pela mina de {self.mapa.nome}')
         if self.estado == 'saindo':
-            print('O anão sai da mina')
+            print(f'{self.nome} sai da mina e retorna com seus minérios.')
