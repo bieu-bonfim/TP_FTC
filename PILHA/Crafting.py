@@ -1,5 +1,6 @@
 from Estado import Estado
 from colorama import init, Fore, Back, Style
+from time import sleep as s
 init()
 
 class Crafting:
@@ -46,7 +47,21 @@ class Crafting:
       self.set_current(new)
       self.pos += 1
     print(f'Pelo visto, o minério mais raro que você encontrou foi {self.atual.raridade}')
+    s(1)
     print('Agora, vamos calcular o valor total de seus achados...')
+    print('------------------------------------------------------------')
+    print(f'{Back.YELLOW}            ', end="", flush=True)
+    s(0.7)
+    print(f'{Back.YELLOW}            ', end="", flush=True)
+    s(0.7)
+    print(f'{Back.YELLOW}            ', end="", flush=True)
+    s(0.7)
+    print(f'{Back.YELLOW}            ', end="", flush=True)
+    s(0.7)
+    print(f'{Back.YELLOW}            {Back.RESET}', end="", flush=True)
+    s(0.7)  
+    print()
+    print('------------------------------------------------------------')
     while True:
       if self.fita[self.pos] == '<':
         self.pos += 1
@@ -67,7 +82,7 @@ class Crafting:
       "Lança", 
       "Martelo de guerra", 
       "Arco longo", 
-      "Espada lendária" 
+      "Espada lendária"
     ]
     cores = [
       "\033[1;30m"
@@ -86,8 +101,9 @@ class Crafting:
     cor_raridade = cores[self.fita[-1]]
     val_raridade = self.valores[self.fita[-1]]
     arma = armas_medievais[(total-int(val_raridade))%9]
-    print(f"Parabéns! Você conseguiu fazer {cor_raridade}{arma}{Style.RESET_ALL}!!!")
-    print(f"O valor de seu item é de {total} dobrões, feito com o mais puro {cor_raridade}{self.raridades[self.fita[-1]]}{Style.RESET_ALL}")
+    print(f"Parabéns! O anão conseguiu fazer {cor_raridade}{arma}{Style.RESET_ALL}!!!")
+    s(3)
+    print(f"O valor de seu item é de {Fore.YELLOW}{total}{Fore.RESET} moedas, feito com o mais puro {cor_raridade}{self.raridades[self.fita[-1]]}{Style.RESET_ALL}")
     
   def print_self(self):
     print('Estados')

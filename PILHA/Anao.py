@@ -1,5 +1,6 @@
 from Mina import *
 from time import sleep as s
+from Crafting import *
 from colorama import init, Fore, Back, Style
 import sys
 import os
@@ -36,12 +37,14 @@ class Anao:
                 s(0.7)
                 print(f'{Back.RED}       ', end="", flush=True)
                 s(0.7)
-                print(f'{Back.RED}       ', end="", flush=True)
+                print(f'{Back.RED}        ', end="", flush=True)
                 s(0.7)
-                print(f'{Back.RED}       ', end="", flush=True)
+                print(f'{Back.RED}        ', end="", flush=True)
                 s(0.7)
+                print(f'{Back.RED}        ', end="", flush=True)
+                s(0.7)  
                 print(f'{Back.RED}       {Back.RESET}', end="", flush=True)
-                s(0.7)                
+                s(0.7)                  
                 print()
                 os.system('clear || cls')
                 print(f'{Fore.RED}Hora de Desempilhar!{Fore.RESET}')
@@ -51,7 +54,7 @@ class Anao:
                 count += 1
                 while True:
                     if self.mapa.mina[count] == 0:
-                        print(f'{Fore.RED}{self.nome}{Fore.RESET} minerando', end="", flush=True)
+                        print(f'{self.nome} minerando', end="", flush=True)
                         s(1)
                         print('\r\033[2K', end="", flush=True)
                         s(0.5)
@@ -72,7 +75,7 @@ class Anao:
                         print('----------------------------------------------------------------------------------------------------------------------------')
                         minerio_atual = self.mapa.mina[count]
                         minerio_atual = minerios[minerio_atual-1]
-                        print(f'{Fore.RED}{self.nome}{Fore.RESET} encontra {Fore.GREEN}{minerio_atual}{Fore.RESET}!', end="", flush=True)
+                        print(f'{self.nome} encontra {Fore.GREEN}{minerio_atual}{Fore.RESET}!', end="", flush=True)
                         s(1)
                         print('\r\033[2K', end="", flush=True)
                         s(1)
@@ -99,7 +102,7 @@ class Anao:
                 self.printBolsa()
                 while True:
                     if self.mapa.mina[count] == 0:
-                        print(f'{Fore.RED}{self.nome}{Fore.RESET} minerando', end="", flush=True)
+                        print(f'{self.nome} minerando', end="", flush=True)
                         s(1)
                         print('\r\033[2K', end="", flush=True)
                         s(0.5)
@@ -118,7 +121,7 @@ class Anao:
                         print('----------------------------------------------------------------------------------------------------------------------------')
                         self.printBolsa()
                         print('----------------------------------------------------------------------------------------------------------------------------')
-                        print(f'{Fore.RED}{self.nome}{Fore.RESET} encontra {Fore.GREEN}{minerio_atual}{Fore.RESET}!', end="", flush=True)
+                        print(f'{self.nome} encontra {Fore.GREEN}{minerio_atual}{Fore.RESET}!', end="", flush=True)
                         s(1)
                         print('\r\033[2K', end="", flush=True)
                         s(1)
@@ -126,14 +129,20 @@ class Anao:
             else:
                 count+=1
 
-        vender = inverted_array = self.bolsa[::-1]
-        minerios = ['Ferro', 'Prata', 'Ouro', 'Platina', 'Esmeralda', 'Safira', 'Rubi', 'Diamante', 'Mithril']
-        valores = ['1', '2', '5', '10', '12', '13', '14', '20', '50']
-        for i in range(len(vender)):
-            print(f'{Fore.RED}{self.nome}{Fore.RESET} vende {minerios[vender[i]-1]} e ganha {Fore.YELLOW}{valores[vender[i]-1]}{Fore.RESET} moedas!')
-            self.moedas += int(valores[vender[i]-1])
-        print(f'Moedas de {Fore.YELLOW}ouro{Fore.RESET} totais: {Fore.YELLOW}{self.moedas}{Fore.RESET}')
-                
+        decision = int(input(f'O que {self.nome} fará com os minérios?\n1- {Fore.YELLOW}Vender{Fore.RESET}\n2- {Fore.MAGENTA}Produzir itens{Fore.RESET}\n'))
+        if decision == 1:
+            vender = inverted_array = self.bolsa[::-1]
+            minerios = ['Ferro', 'Prata', 'Ouro', 'Platina', 'Esmeralda', 'Safira', 'Rubi', 'Diamante', 'Mithril']
+            valores = ['1', '2', '5', '10', '12', '13', '14', '20', '50']
+            for i in range(len(vender)):
+                print(f'{Fore.RED}{self.nome}{Fore.RESET} vende {minerios[vender[i]-1]} e ganha {Fore.YELLOW}{valores[vender[i]-1]}{Fore.RESET} moedas!')
+                s(1)
+                self.moedas += int(valores[vender[i]-1])
+            print(f'Moedas de {Fore.YELLOW}ouro{Fore.RESET} totais: {Fore.YELLOW}{self.moedas}{Fore.RESET}')
+        if decision == 2:
+            criar = Crafting(self.bolsa)
+            criar.start_craft()
+            
     def printBolsa(self):
         ferro = 0
         prata = 0
